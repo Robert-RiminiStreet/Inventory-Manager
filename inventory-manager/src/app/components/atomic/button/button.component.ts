@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class ButtonComponent {
-  @Input() variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'disabled' | 'tertiary' = 'primary';
+  @Input() variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'disabled' | 'tertiary' = 'secondary';
   @Input() size: 'sm' | 'default' | 'large' = 'default';
   @Input() icon?: string;
   @Input() text!: string;

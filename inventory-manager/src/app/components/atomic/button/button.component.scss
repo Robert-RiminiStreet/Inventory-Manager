@@ -10,7 +10,7 @@ button {
   font-size: var(--font-size-body-default, 16px);
   font-weight: bold;
   padding: 10px 16px;
-  border-radius: var(--corner-radius-corner-radius-m, 8px);
+  border-radius: var(--corner-radius-corner-radius-m, 8px) !important;
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
