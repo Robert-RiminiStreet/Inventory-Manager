@@ -6,63 +6,90 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  flex-shrink: 0;
+  gap: 10px;
   font-size: var(--font-size-body-default, 16px);
   font-weight: bold;
-  padding: 10px 16px;
-  border-radius: var(--corner-radius-corner-radius-m, 8px) !important;
-  border: 1px solid transparent;
+  padding: 10px 18px;
+  --button-border-radius: var(--corner-radius-corner-radius-m, 8px);
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .primary {
   background: var(--button-primary);
   color: var(--button-secondary);
   border-color: var(--button-primary);
+  &:hover {
+    background: color-mix(in srgb, var(--button-primary) 15%, black);
+  }
 }
 
 .secondary {
   background: var(--button-secondary);
   color: var(--button-primary);
   border-color: var(--button-primary);
+  &:hover {
+    background: color-mix(in srgb, var(--button-secondary) 85%, black);
+  }
 }
 
 .success {
   background: var(--button-success);
   color: var(--button-secondary);
   border-color: var(--button-success);
+  &:hover {
+    background: color-mix(in srgb, var(--button-success) 85%, black);
+  }
 }
 
 .danger {
   background: var(--button-danger);
   color: var(--button-secondary);
   border-color: var(--button-danger);
+  &:hover {
+    background: color-mix(in srgb, var(--button-danger) 85%, black);
+  }
 }
 
 .warning {
   background: var(--button-warning);
   color: var(--button-secondary);
   border-color: var(--button-warning);
+  &:hover {
+    background: color-mix(in srgb, var(--button-warning) 85%, black);
+  }
 }
 
 .info {
   background: var(--button-info);
   color: var(--button-secondary);
   border-color: var(--button-info);
+  &:hover {
+    background: color-mix(in srgb, var(--button-info) 85%, black);
+  }
 }
 
 .tertiary {
   background: var(--button-tertiary);
   color: var(--button-secondary);
   border-color: var(--button-tertiary);
+  &:hover {
+    background: color-mix(in srgb, var(--button-tertiary) 85%, black);
+  }
 }
 
 .disabled {
   background: var(--button-disabled);
-  color: var(--brand-colors-grey);
+  color: var(--brand-colors-disabled);
   border-color: var(--button-disabled);
-  cursor: not-allowed;
+  &:hover {
+    cursor: not-allowed;
+  }
 }
 
 .sm {
