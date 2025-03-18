@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-header',
-  imports: [],
+  selector: 'site-header',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-
+  user = {
+    name: 'Jason',
+    role: 'Inventory Manager',
+    avatar: '/assets/user-avatar.jpg',
+  };
 }

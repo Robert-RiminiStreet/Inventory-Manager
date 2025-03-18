@@ -1,15 +1,21 @@
 .layout-container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 82px;
 }
 
-app-navigation {
+.main-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.navigation {
   flex-shrink: 0;
 }
 
 .content-area {
-  flex-grow: 1;
-  padding: 20px;
-  background: #f8f9fa;
+  padding: 24px 20px;
+  background: var(--brand-colors-gray-200);
   overflow-y: auto;
 }

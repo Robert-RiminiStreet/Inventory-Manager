@@ -1,37 +1,47 @@
 <div class="nav-container" [class.collapsed]="isCollapsed">
-  <div class="nav-header">
-    <img src="/riministreet.svg" alt="Rimini Street Logo" class="logo">
-    <div class="toggle-button" (click)="toggleCollapse()">
-      <i class="bi bi-chevron-left"></i>
+  <div class="nav-header w-100">
+    <img *ngIf="!isCollapsed" src="/riministreet.svg" alt="Rimini Street Logo" class="logo expanded-logo">
+
+    <div class="toggle-button d-flex w-100 justify-content-end" (click)="toggleCollapse()">
+      <i class="bi text-center" [ngClass]="isCollapsed ? 'bi-chevron-double-right' : 'bi-chevron-double-left'"></i>
     </div>
   </div>
 
-  <div class="quick-actions">
+  <div class="collapsed-logo-container">
+    <img *ngIf="isCollapsed" src="/riministreet-small.svg" alt="Rimini Street Small Logo" class="logo collapsed-logo">
+  </div>
+
+  <div class="quick-actions w-100 mt-4" *ngIf="!isCollapsed">
     <div class="quick-header">
-      <i class="bi bi-headphones"></i>
+      <i class="bi bi-stopwatch me-2"></i>
       <span>Quick Actions</span>
     </div>
     <div class="actions-list">
       <button
+        [fullWidth]="true"
         [variant]="'secondary'"
         [text]="action"
+        class="mb-2"
         *ngFor="let action of quickActions">
       </button>
     </div>
-
   </div>
 
-  <ul class="nav-list">
+  <ul class="nav-list w-100 mt-3">
     <li *ngFor="let item of navItems" class="nav-item mb-0">
-      <div class="nav-link p-0" (click)="toggleSubmenu(item)">
-        <div class="d-flex justify-content-between">
+      <div
+        class="nav-link p-0 d-flex align-items-center justify-content-between"
+        (click)="toggleSubmenu(item)"
+        [class.active]="item.active"
+      >
+        <div class="d-flex align-items-center w-100">
           <i class="bi" [ngClass]="item.icon"></i>
-          <div>{{ item.label }}</div>
+          <div class="ms-sm-3" *ngIf="!isCollapsed">{{ item.label }}</div>
         </div>
-        <div *ngIf="item.badge" class="badge">{{ item.badge }}</div>
-        <i *ngIf="item.children" class="bi bi-chevron-down" [class.expanded]="item.expanded"></i>
+        <div *ngIf="!isCollapsed && item.badge" class="badge rounded-pill">{{ item.badge }}</div>
+        <i *ngIf="!isCollapsed && item.children" class="bi bi-chevron-down" [class.expanded]="item.expanded"></i>
       </div>
-      <ul *ngIf="item.children && item.expanded" class="submenu">
+      <ul *ngIf="!isCollapsed && item.children && item.expanded" class="submenu">
         <li *ngFor="let sub of item.children">{{ sub.label }}</li>
       </ul>
     </li>

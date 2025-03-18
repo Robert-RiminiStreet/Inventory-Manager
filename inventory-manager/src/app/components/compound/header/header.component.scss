@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 82px;
+  width: 100%;
+  background: var(--brand-colors-primary);
+  color: var(--brand-colors-white);
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+  padding-top: 82px;
+}
+
+.navigation {
+  flex-shrink: 0;
+}
+
+.content-area {
+  flex-grow: 1;
+  background: var(--brand-colors-gray-200);
+  overflow-y: auto;
+}

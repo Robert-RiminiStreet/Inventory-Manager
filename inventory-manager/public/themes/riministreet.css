@@ -31,11 +31,11 @@
   --brand-colors-info: #38AAF4;
   --brand-colors-link: #3C59E7;
   --corner-radius-corner-radius-none: 0;
-  --corner-radius-corner-radius-xs: 2;
-  --corner-radius-corner-radius-s: 4;
-  --corner-radius-corner-radius-m: 8;
-  --corner-radius-corner-radius-l: 16;
-  --corner-radius-corner-radius-xl: 24;
+  --corner-radius-corner-radius-xs: 2px;
+  --corner-radius-corner-radius-s: 4px;
+  --corner-radius-corner-radius-m: 8px;
+  --corner-radius-corner-radius-l: 16px;
+  --corner-radius-corner-radius-xl: 24px;
   --brand-colors-primary-100: #CAD1F4;
   --brand-colors-primary-200: #9AA6EA;
   --brand-colors-primary-300: #5D6CC1;

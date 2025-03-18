@@ -1,9 +1,9 @@
-<div class="layout-container">
-  <!-- Left Navigation -->
-  <app-navigation></app-navigation>
-
-  <!-- Main Content -->
-  <div class="content-area">
-    <router-outlet></router-outlet> <!-- Pages will be loaded here -->
+<div class="layout-container d-flex flex-column h-100">
+  <site-header class="position-fixed top-0 w-100"></site-header>
+  <div class="main-container d-flex">
+    <navigation class="flex-shrink-0"></navigation>
+    <div class="content-area flex-grow-1">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
