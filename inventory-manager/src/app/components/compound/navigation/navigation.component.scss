@@ -1,0 +1,111 @@
+.nav-container {
+  width: 310px;
+  border-right: 2px solid var(--brand-colors-gray-200);
+  background: var(--brand-colors-gray-100);
+  padding: 26px 35px;
+  transition: width 0.3s ease-in-out;
+
+  &.collapsed {
+    width: 56px;
+
+    .quick-actions,
+    .nav-link span {
+      display: none;
+    }
+
+    .toggle-button {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    width: 183px;
+  }
+
+  .toggle-button {
+    cursor: pointer;
+    font-size: 20px;
+  }
+}
+
+.quick-actions {
+  margin-top: 20px;
+  background: var(--brand-colors-white);
+  border-radius: var(--corner-radius-corner-radius-m);
+  box-shadow: 0 var(--box-shadow-default-shadow-y) var(--box-shadow-default-shadow-blur)
+    var(--box-shadow-default-shadow-spread) var(--box-shadow-default-shadow-color);
+
+  .quick-header {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: var(--font-size-H5);
+    margin-bottom: 10px;
+  }
+
+  .actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.nav-list {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+
+  .nav-item {
+    padding: 18px 8px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--brand-colors-primary-100);
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      font-size: var(--font-size-body-default);
+      font-weight: bold;
+      border-radius: var(--corner-radius-corner-radius-m);
+
+      .bi {
+        margin-right: 10px;
+      }
+
+      .badge {
+        margin-left: auto;
+        background: var(--brand-colors-danger);
+        color: var(--brand-colors-white);
+        padding: 4px 8px;
+        border-radius: var(--corner-radius-corner-radius-l);
+        font-size: var(--font-size-small);
+      }
+
+      .bi-chevron-down {
+        margin-left: auto;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      &.expanded {
+        .bi-chevron-down {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .submenu {
+      list-style: none;
+      padding-left: 20px;
+      font-size: var(--font-size-small);
+    }
+  }
+}

@@ -1,11 +1,36 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ButtonComponent } from '../../atomic/button/button.component';
 
 @Component({
   selector: 'app-navigation',
-  imports: [],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss'
+  styleUrls: ['./navigation.component.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterModule, ButtonComponent],
 })
 export class NavigationComponent {
+  isCollapsed = false;
 
+  quickActions = ['Stockout Risks', 'Pending Orders', 'What-if Analysis', 'Safety Stock'];
+
+  navItems = [
+    { label: 'Workspace', icon: 'bi-house', badge: 12 },
+    { label: 'Inventory Management', icon: 'bi-boxes', expanded: false, children: [{ label: 'View All' }] },
+    { label: 'Inventory & Logistics', icon: 'bi-truck', expanded: false, children: [{ label: 'View All' }] },
+    { label: 'Other', icon: 'bi-grid', expanded: false, children: [{ label: 'View All' }] },
+    { label: 'Pins', icon: 'bi-pin', badge: 3 },
+    { label: 'Settings', icon: 'bi-gear' },
+  ];
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  toggleSubmenu(item: any) {
+    if (item.children) {
+      item.expanded = !item.expanded;
+    }
+  }
 }

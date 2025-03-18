@@ -1,1 +1,39 @@
-<p>navigation works!</p>
+<div class="nav-container" [class.collapsed]="isCollapsed">
+  <div class="nav-header">
+    <img src="/riministreet.svg" alt="Rimini Street Logo" class="logo">
+    <div class="toggle-button" (click)="toggleCollapse()">
+      <i class="bi bi-chevron-left"></i>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <div class="quick-header">
+      <i class="bi bi-headphones"></i>
+      <span>Quick Actions</span>
+    </div>
+    <div class="actions-list">
+      <button
+        [variant]="'secondary'"
+        [text]="action"
+        *ngFor="let action of quickActions">
+      </button>
+    </div>
+
+  </div>
+
+  <ul class="nav-list">
+    <li *ngFor="let item of navItems" class="nav-item mb-0">
+      <div class="nav-link p-0" (click)="toggleSubmenu(item)">
+        <div class="d-flex justify-content-between">
+          <i class="bi" [ngClass]="item.icon"></i>
+          <div>{{ item.label }}</div>
+        </div>
+        <div *ngIf="item.badge" class="badge">{{ item.badge }}</div>
+        <i *ngIf="item.children" class="bi bi-chevron-down" [class.expanded]="item.expanded"></i>
+      </div>
+      <ul *ngIf="item.children && item.expanded" class="submenu">
+        <li *ngFor="let sub of item.children">{{ sub.label }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
