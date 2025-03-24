@@ -54,6 +54,7 @@ button {
   border-color: var(--button-danger);
   &:hover {
     background: color-mix(in srgb, var(--button-danger) 85%, black);
+    color: var(--font-color-body-default-light);
   }
 }
 

@@ -96,6 +96,13 @@
   --box-shadow-default-shadow-blur: 8;
   --box-shadow-default-shadow-spread: 0;
 
+  /* Alerts */
+  --alert-warning: var(--brand-colors-warning-100);
+  --alert-danger: var(--brand-colors-danger-100);
+  --alert-default: var(--brand-colors-gray-100);
+  --alert-success: var(--brand-colors-success-100);
+  --alert-info: var(--brand-colors-tertiary-100);
+
   /* Buttons */
   /* Button Variables */
   --button-primary: var(--brand-colors-primary);

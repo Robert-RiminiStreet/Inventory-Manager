@@ -1,0 +1,18 @@
+.breadcrumb {
+  padding: 8px 0;
+  list-style: none;
+  display: flex;
+}
+
+.breadcrumb-item {
+  margin-right: 8px;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}

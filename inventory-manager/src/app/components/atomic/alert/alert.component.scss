@@ -1,0 +1,62 @@
+.alert {
+  font-size: var(--font-size-body-default);
+  border-radius: var(--corner-radius-corner-radius-l);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-primary {
+  background-color: var(--alert-default);
+  color: var(--button-primary);
+  border-color: var(--alert-default);
+}
+
+.alert-secondary {
+  background-color: var(--alert-default);
+  color: var(--button-primary);
+  border-color: var(--alert-default);
+}
+
+.alert-danger {
+  background-color: var(--alert-danger);
+  border-color: var(--alert-danger);
+}
+
+.alert-warning {
+  background-color: var(--alert-warning);
+  color: var(--button-secondary);
+  border-color: var(--alert-warning);
+}
+
+.alert-info {
+  background-color: var(--alert-info);
+  color: var(--button-secondary);
+  border-color: var(--alert-info);
+}
+
+.alert-success {
+  background-color: var(--alert-success);
+  color: var(--button-secondary);
+  border-color: var(--alert-success);
+}
+
+.alert-title {
+  font-weight: bold;
+  color: var(--font-color-body-default-dark);
+
+  i {
+    color: var(--brand-colors-danger);
+    font-size: var(--font-size-H4);
+  }
+}
+
+.alert-subtitle {
+  font-size: var(--font-size-H5);
+  color: var(--brand-colors-gray-800);
+}
+
+.alert-impact {
+  font-size: var(--font-size-body-default);
+  color: var(--brand-colors-danger-500);
+}

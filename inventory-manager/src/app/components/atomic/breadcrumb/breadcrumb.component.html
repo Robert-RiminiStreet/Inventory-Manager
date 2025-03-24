@@ -1,1 +1,17 @@
-<p>breadcrumb works!</p>
+<div class="d-flex align-items-center">
+  <div class="breadcrumb-item mb-3">
+    <a *ngIf="!isHomeRoute()" routerLink="/" class="text-decoration-none">
+      <i class="bi bi-house-door"></i> Workspace
+    </a>
+    <span *ngIf="isHomeRoute()">
+      <i class="bi bi-house-door"></i> Workspace
+    </span>
+  </div>
+  <div class="breadcrumb-item" *ngIf="breadcrumbItems.length > 1">
+    /
+  </div>
+  <div class="breadcrumb-item" *ngFor="let item of breadcrumbItems; let last = last">
+    <span *ngIf="!last">{{ item }}</span>
+    <a *ngIf="last" href="#" class="text-decoration-none">{{ item }}</a>
+  </div>
+</div>

@@ -13,6 +13,18 @@
   right: 0;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .logo {
+    height: 30px;
+  }
+  .brand-switcher {
+    background: var(--brand-colors-white);
+    color: var(--brand-colors-black);
+    border: 1px solid var(--brand-colors-gray-400);
+    border-radius: var(--corner-radius-corner-radius-m);
+    padding: 4px 8px;
+    font-size: var(--font-size-body-default);
+    cursor: pointer;
+  }
 }
 
 body, html {

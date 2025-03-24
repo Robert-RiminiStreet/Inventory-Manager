@@ -1,1 +1,31 @@
-<p>alert works!</p>
+<div class="alert"
+     [ngClass]="[
+         'alert-' + variant,
+         'd-flex',
+         'flex-column',
+         'w-100',
+         'mb-3'
+     ]" role="alert">
+
+  <div class="d-flex flex-column">
+    <div class="alert-title d-flex align-items-center">
+      <ng-container *ngIf="icon">
+        <i class="bi fs-4 me-2" [ngClass]="icon"></i>
+      </ng-container>
+      <h4 class="mb-0">{{ title }}</h4>
+    </div>
+    <div class="alert-subtitle ms-2 mt-2">
+      <div>{{ subtitle }}</div>
+    </div>
+    <div class="alert-impact ms-2 mt-2">
+      <div>{{ impact }}</div>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center ms-auto">
+    <button variant="danger"
+            [text]="buttonText"
+            (click)="resolveAction()">
+    </button>
+  </div>
+</div>
