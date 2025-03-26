@@ -1,0 +1,95 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th (click)="sortTable('sku')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>SKU #</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'sku'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'sku'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'sku'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th (click)="sortTable('stockLevel')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Stock Level</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'stockLevel'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'stockLevel'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'stockLevel'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th (click)="sortTable('demandForecast')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Demand Forecast</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'demandForecast'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'demandForecast'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'demandForecast'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th (click)="sortTable('sellThroughRate')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Sell-Through Rate</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'sellThroughRate'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'sellThroughRate'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'sellThroughRate'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th (click)="sortTable('revenueAtRisk')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Revenue at Risk</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'revenueAtRisk'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'revenueAtRisk'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'revenueAtRisk'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th (click)="sortTable('supplyChainRisk')" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Supply Chain Risk</span>
+            <div class="position-relative">
+              <i *ngIf="sortColumn === 'supplyChainRisk'" class="bi" [ngClass]="sortDirection === 'asc' ? 'bi-caret-up-fill' : 'bi-caret-down-fill'"></i>
+              <i *ngIf="sortColumn !== 'supplyChainRisk'" class="bi bi-caret-up-fill"></i>
+              <i *ngIf="sortColumn !== 'supplyChainRisk'" class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of sortedData">
+        <td>
+          <span [ngClass]="{'text-danger': item.supplyChainRisk === 'High', 'text-success': item.supplyChainRisk === 'Low'}">
+            <i class="bi" [ngClass]="item.supplyChainRisk === 'High' ? 'bi-circle-fill' : 'bi-circle-fill'"></i>
+          </span>
+        </td>
+        <td>{{ item.sku }}</td>
+        <td>{{ item.stockLevel }}</td>
+        <td>{{ item.demandForecast }}</td>
+        <td>{{ item.sellThroughRate }}%</td>
+        <td>${{ item.revenueAtRisk }}</td>
+        <td [ngClass]="{'text-danger': item.supplyChainRisk === 'High', 'text-success': item.supplyChainRisk === 'Low'}">
+          {{ item.supplyChainRisk }}
+        </td>
+        <td>
+          <app-button
+            [variant]="'primary'"
+            [size]="'sm'"
+            [text]="'Resolve'"
+            (click)="resolveAction(item)">
+          </app-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

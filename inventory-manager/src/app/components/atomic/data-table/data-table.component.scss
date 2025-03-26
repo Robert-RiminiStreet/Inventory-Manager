@@ -1,0 +1,42 @@
+.table {
+  text-align: center;
+  th {
+    background-color: var(--brand-colors-gray-100);
+    color: var(--brand-colors-gray-700);
+    font-size: var(--font-size-xsmall);
+    vertical-align: middle;
+  }
+
+  td {
+    vertical-align: middle;
+    color: var(--brand-colors-primary-500);
+    padding: 1.25rem;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--brand-colors-100);
+    }
+
+    &:nth-child(odd) {
+      background-color: var(--brand-colors-200);
+    }
+  }
+
+  .btn-primary {
+    background-color: var(--button-primary);
+    border-color: var(--button-primary);
+  }
+
+  .text-danger {
+    color: var(--brand-colors-danger) !important;
+  }
+
+  .text-success {
+    color: var(--brand-colors-success) !important;
+  }
+
+  .bi-circle-fill {
+    font-size: 16px ;
+  }
+}

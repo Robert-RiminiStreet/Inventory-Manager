@@ -16,7 +16,7 @@ export class NavigationComponent {
   quickActions = ['Stockout Risks', 'Pending Orders', 'What-if Analysis', 'Safety Stock'];
 
   navItems = [
-    { label: 'Workspace', icon: 'bi-house', badge: 12, active: false },
+    { label: 'Dashboard', icon: 'bi-house', badge: 12, active: false },
     { label: 'Inventory Management', icon: 'bi-boxes', expanded: false, active: false, children: [{ label: 'View All', active: false }] },
     { label: 'Inventory & Logistics', icon: 'bi-truck', expanded: false, active: false, children: [{ label: 'View All', active: false }] },
     { label: 'Other', icon: 'bi-grid', expanded: false, active: false, children: [{ label: 'View All', active: false }] },

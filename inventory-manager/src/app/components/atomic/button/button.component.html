@@ -1,9 +1,5 @@
-<button class="btn" [ngClass]="[variant, size]">
-  <ng-container *ngIf="icon">
-    <i class="bi" [ngClass]="icon"></i>
-  </ng-container>
-  {{ text }}
-  <ng-container *ngIf="icon">
-    <i class="bi" [ngClass]="icon"></i>
-  </ng-container>
-</button>
+<ng-container *ngIf="icon">
+  <i class="bi" [ngClass]="icon"></i>
+</ng-container>
+{{ text }}
+<ng-content></ng-content>

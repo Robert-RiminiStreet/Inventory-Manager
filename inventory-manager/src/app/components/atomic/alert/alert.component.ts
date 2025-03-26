@@ -7,18 +7,18 @@ import { ButtonComponent } from '../button/button.component';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [ButtonComponent, CommonModule]
 })
 export class AlertComponent {
-  @Input() variant: 'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info' = 'primary';
+  @Input() variant: string = 'primary';
   @Input() title: string = '';
   @Input() subtitle: string = '';
   @Input() impact: string = '';
-  @Input() icon: string | null = null;
+  @Input() icon: string = '';
+  @Input() buttonText: string = 'Dismiss';
   @Input() dismissible: boolean = false;
-  @Input() buttonText: string = 'Resolve';
 
   resolveAction() {
-    console.log('Resolve button clicked');
+    console.log('Alert resolved');
   }
 }

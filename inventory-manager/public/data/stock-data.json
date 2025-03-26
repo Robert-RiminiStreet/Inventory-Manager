@@ -1,0 +1,26 @@
+[
+  {
+    "sku": "SKU-123",
+    "stockLevel": "50 Units",
+    "demandForecast": "500 Units",
+    "sellThroughRate": 80,
+    "revenueAtRisk": 50000,
+    "supplyChainRisk": "High"
+  },
+  {
+    "sku": "SKU-456",
+    "stockLevel": "85 Units",
+    "demandForecast": "300 Units",
+    "sellThroughRate": 65,
+    "revenueAtRisk": 35000,
+    "supplyChainRisk": "High"
+  },
+  {
+    "sku": "SKU-789",
+    "stockLevel": "200 Units",
+    "demandForecast": "100 Units",
+    "sellThroughRate": 40,
+    "revenueAtRisk": 5000,
+    "supplyChainRisk": "Low"
+  }
+]

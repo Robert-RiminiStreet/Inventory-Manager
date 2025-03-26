@@ -1,9 +1,98 @@
-<app-alert
-  variant="danger"
-  title="Stockout Risk: SKU-123"
-  subtitle="3 days to stockout"
-  impact="Impact: $45,000 production line B at risk"
-  icon="bi-exclamation-triangle-fill"
-  [dismissible]="true"
-  buttonText="Resolve">
-</app-alert>
+<div class="row row-cols-1 row-cols-md-12">
+  <app-alert
+    class="mb-2"
+    variant="danger"
+    title="Stockout Risk: SKU-123"
+    subtitle="3 days to stockout"
+    impact="Impact: $45,000 production line B at risk"
+    icon="bi-exclamation-triangle-fill"
+    [dismissible]="true"
+    buttonText="Resolve">
+  </app-alert>
+
+  <app-alert
+    variant="warning"
+    title="Stockout Risk: SKU-123"
+    subtitle="3 days to stockout"
+    impact="Impact: $45,000 production line B at risk"
+    icon="bi-exclamation-triangle-fill"
+    [dismissible]="true"
+    buttonText="Resolve">
+  </app-alert>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 g-2">
+  <div class="col">
+    <app-kpi-card
+      class="card"
+      title="Inventory Turnover"
+      [value]="'4.5x'"
+      [change]="'+0.3'"
+      [target]="'4.0x'"
+      [variant]="'danger'"
+      icon="bi-arrow-up">
+    </app-kpi-card>
+  </div>
+
+  <div class="col">
+    <app-kpi-card
+      class="card"
+      title="Stockout Rate"
+      [value]="'1.2%'"
+      [change]="'-0.5%'"
+      [target]="'1.0%'"
+      [variant]="'success'"
+      icon="bi-arrow-down">
+    </app-kpi-card>
+  </div>
+
+  <div class="col">
+    <app-kpi-card
+      class="card"
+      title="Forecast Accuracy"
+      [value]="'92%'"
+      [change]="'+2.0%'"
+      [target]="'95%'"
+      [variant]="'danger'"
+      icon="bi-arrow-up">
+    </app-kpi-card>
+  </div>
+
+  <div class="col">
+    <app-kpi-card
+      class="card"
+      title="Order Cycle Time"
+      [value]="'5.2'"
+      [change]="'-0.3'"
+      [target]="'5.0'"
+      [variant]="'success'"
+      icon="bi-arrow-down">
+    </app-kpi-card>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-12">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title h4 mb-4">Stock Health Pipeline</div>
+        <div class="card-content">
+          <app-data-table [data]="stockData"></app-data-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-12">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title h4 mb-4">Ai Optimization Plan</div>
+        <div class="card-content">
+          <app-ai-optimized-plan-card></app-ai-optimized-plan-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

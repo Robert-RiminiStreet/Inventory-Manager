@@ -1,10 +1,15 @@
 <div class="layout-container d-flex flex-column h-100">
-  <site-header class="position-fixed top-0 w-100"></site-header>
+  <site-header [selectedTheme]="selectedTheme" (switchTheme)="switchTheme($event)" class="position-fixed top-0 w-100"></site-header>
   <div class="main-container d-flex">
     <navigation class="flex-shrink-0"></navigation>
     <div class="content-area flex-grow-1">
       <breadcrumb class="breadcrumb-container mt-5 pt-3" (pageTitleChange)="updatePageTitle($event)"></breadcrumb>
-      <h3 *ngIf="pageTitle">{{ pageTitle }}</h3>
+      <div class="page-title-section mb-4">
+        <h3>{{ pageTitle }}</h3>
+        <div *ngIf="subtitle" class="page-title-subtitle">
+          <div class="">{{ subtitle }}</div>
+        </div>
+      </div>
       <router-outlet></router-outlet>
     </div>
   </div>

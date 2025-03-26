@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { PageTitleService } from '../../../services/page-title.service';
 
 interface RouteData {
   breadcrumb?: string;
@@ -13,38 +15,56 @@ interface RouteData {
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class BreadcrumbComponent implements OnInit {
-  breadcrumbItems: string[] = [];
-  currentRoute: string = '';
+  breadcrumbItems: any[] = [];
   pageTitle: string = '';
+  subtitle: string = '';
 
   @Output() pageTitleChange = new EventEmitter<string>();
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private pageTitleService: PageTitleService
+  ) {}
 
   ngOnInit(): void {
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event) => {
-      console.log('Router Event:', event);  // Log all router events to verify that they are firing
+    ).subscribe(() => {
       this.updateBreadcrumb();
       this.setPageTitle(this.activatedRoute.root);
     });
-  }
 
+    this.pageTitleService.title$.subscribe(title => {
+      this.pageTitle = title;
+      this.pageTitleChange.emit(this.pageTitle);
+    });
+
+    this.pageTitleService.subtitle$.subscribe(subtitle => {
+      this.subtitle = subtitle;
+    });
+  }
 
   private updateBreadcrumb(): void {
-    this.breadcrumbItems = [];
-    this.breadcrumbItems.push('Home');
-    this.currentRoute = this.router.url;
     const pathSegments = this.getRouteSegments(this.activatedRoute.root);
-    this.breadcrumbItems = [...this.breadcrumbItems, ...pathSegments];
+
+    if (this.isDashboard()) {
+      this.breadcrumbItems = [{ label: 'Dashboard', icon: 'bi-house-door' }];
+    } else {
+      this.breadcrumbItems = [{ label: 'Home', icon: 'bi-house-door' }, ...pathSegments.map(segment => ({
+        label: segment,
+        icon: 'bi-folder'
+      }))];
+    }
+
   }
 
-  private getRouteSegments(route: ActivatedRoute): string[] {
-    let segments: string[] = [];
+  private getRouteSegments(route: ActivatedRoute): any[] {
+    let segments: any[] = [];
     if (route.firstChild) {
       segments = segments.concat(this.getRouteSegments(route.firstChild));
     } else {
@@ -57,21 +77,22 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private setPageTitle(route: ActivatedRoute): void {
-    if (route.firstChild) {
-      this.setPageTitle(route.firstChild);
+    if (this.isDashboard()) {
+      this.pageTitleService.setTitle('Dashboard');
     } else {
-      const routeData = route.snapshot.data as RouteData;
-      if (routeData && routeData.title) {
-        this.pageTitle = routeData.title;
-        console.log('Page Title Set:', this.pageTitle);  // Log to verify the title
-        this.pageTitleChange.emit(this.pageTitle);  // Emit the pageTitle to the parent component
+      if (route.firstChild) {
+        this.setPageTitle(route.firstChild);
       } else {
-        console.log('No title in route data');  // If no title is found
+        const routeData = route.snapshot.data as RouteData;
+        if (routeData && routeData.title) {
+          this.pageTitleService.setTitle(routeData.title);
+        }
       }
     }
   }
 
-  isHomeRoute(): boolean {
-    return this.currentRoute === '/';
+  isDashboard(): boolean {
+    const isDashboard = this.router.url === '/';
+    return isDashboard;
   }
 }

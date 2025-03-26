@@ -7,3 +7,49 @@ body, html {
   box-sizing: border-box;
   height: 100vh;
 }
+
+h1, .h1 {
+  font-size: var(--font-size-H1);
+}
+
+h2, .h2 {
+  font-size: var(--font-size-H2);
+}
+
+h3, .h3 {
+  font-size: var(--font-size-H3);
+}
+
+h4, .h4 {
+  font-size: var(--font-size-H4);
+}
+
+h5, .h5 {
+  font-size: var(--font-size-H5);
+}
+
+h6, .h6 {
+  font-size: var(--font-size-H6);
+}
+
+.mb-2 {
+  margin-bottom: 13px !important;
+}
+
+.mb-3 {
+  margin-bottom: 15px !important;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.g-2 {
+  --bs-gutter-y: 13px;
+  --bs-gutter-x: 13px;
+}
+
+.card {
+  border-radius: var(--corner-radius-corner-radius-l);
+}
+

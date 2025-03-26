@@ -5,7 +5,6 @@ export const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: { breadcrumb: 'Workspace', title: 'Workspace' }
+    data: { breadcrumb: 'Dashboard', title: 'Dashboard' },
   },
 ];
-

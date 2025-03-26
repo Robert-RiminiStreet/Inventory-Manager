@@ -4,41 +4,43 @@
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
+  padding: 16px 24px;
+  margin-bottom: 0;
 }
 
 .alert-primary {
   background-color: var(--alert-default);
   color: var(--button-primary);
-  border-color: var(--alert-default);
+  border-color: var(--brand-colors-primary);
 }
 
 .alert-secondary {
   background-color: var(--alert-default);
   color: var(--button-primary);
-  border-color: var(--alert-default);
+  border-color: var(--brand-colors-secondary);
 }
 
 .alert-danger {
   background-color: var(--alert-danger);
-  border-color: var(--alert-danger);
+  border-color: var(--brand-colors-danger);
 }
 
 .alert-warning {
   background-color: var(--alert-warning);
   color: var(--button-secondary);
-  border-color: var(--alert-warning);
+  border-color: var(--brand-colors-warning);
 }
 
 .alert-info {
   background-color: var(--alert-info);
   color: var(--button-secondary);
-  border-color: var(--alert-info);
+  border-color: var(--brand-colors-info);
 }
 
 .alert-success {
   background-color: var(--alert-success);
   color: var(--button-secondary);
-  border-color: var(--alert-success);
+  border-color: var(--brand-colors-success);
 }
 
 .alert-title {

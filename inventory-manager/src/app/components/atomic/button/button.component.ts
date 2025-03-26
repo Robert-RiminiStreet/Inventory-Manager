@@ -2,8 +2,8 @@ import { Component, Input, HostBinding, ViewEncapsulation } from '@angular/core'
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'button',
-  template: `{{ text }} <ng-content></ng-content>`,
+  selector: 'app-button',
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   standalone: true,
   imports: [CommonModule],

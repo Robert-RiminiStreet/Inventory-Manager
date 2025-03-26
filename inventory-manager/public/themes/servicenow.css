@@ -3,14 +3,15 @@
   --font-color-body-default-dark: #181A1F;
   --font-color-body-default-light: #FFFFFF;
   --font-color-body-default-disabled: #9AA1AF;
-  --font-size-H1: 32;
-  --font-size-H2: 24;
-  --font-size-H3: 20;
-  --font-size-H4: 18;
-  --font-size-H5: 16;
-  --font-size-H6: 14;
-  --font-size-body-default: 16;
-  --font-size-small: 12;
+  --font-size-H1: 32px;
+  --font-size-H2: 24px;
+  --font-size-H3: 20px;
+  --font-size-H4: 18px;
+  --font-size-H5: 16px;
+  --font-size-H6: 14px;
+  --font-size-body-default: 16px;
+  --font-size-small: 12px;
+  --font-size-xsmall: 12px;
   --brand-colors-secondary: #FFFFFF;
   --brand-colors-tertiary: #3456DA;
   --brand-colors-success: #51AE00;
@@ -92,8 +93,8 @@
   --brand-colors-danger-900: #CC293C;
   --box-shadow-default-shadow-color: rgba(23, 40, 52, 0.08);
   --box-shadow-default-shadow-x: 0;
-  --box-shadow-default-shadow-y: 4;
-  --box-shadow-default-shadow-blur: 8;
+  --box-shadow-default-shadow-y: 4px;
+  --box-shadow-default-shadow-blur: 8px;
   --box-shadow-default-shadow-spread: 0;
 
   /* Alerts */

@@ -1,0 +1,13 @@
+<div class="kpi-card">
+  <div class="kpi-card-content">
+    <div class="kpi-title">
+      <h5>{{ title }}</h5>
+    </div>
+    <div class="kpi-value">
+      <div class="value h2">{{ value }}</div>
+    </div>
+    <div class="kpi-change" [ngStyle]="{ color: getChangeColor() }">
+      <div class="fw-bold fs-4">{{ change }} vs target {{ target }}</div>
+    </div>
+  </div>
+</div>
