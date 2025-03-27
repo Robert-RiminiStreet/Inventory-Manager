@@ -96,3 +96,37 @@
     </div>
   </div>
 </div>
+
+<div class="row row-cols-1 row-cols-md-12">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title h4 mb-4">Ai Analysis</div>
+          <div class="card-content">
+            <div class="row row-cols-1 row-cols-lg-12">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title h5 mb-4">Inventory Health</div>
+                    <div class="card-content">
+                      <app-chart [chartData]="barChartData" [chartType]="'bar'" [chartOptions]="barChartOptions"></app-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title h5 mb-4">Demand Forecast</div>
+                    <div class="card-content">
+                      <app-chart [chartData]="lineChartData" [chartType]="'line'" [chartOptions]="lineChartOptions"></app-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
