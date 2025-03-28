@@ -4,10 +4,11 @@
       <h5>{{ title }}</h5>
     </div>
     <div class="kpi-value">
-      <div class="value h2">{{ value }}</div>
+      <div class="value h1">{{ value }}</div>
     </div>
     <div class="kpi-change" [ngStyle]="{ color: getChangeColor() }">
-      <div class="fw-bold fs-4">{{ change }} vs target {{ target }}</div>
+      <div class="fw-bold">{{ change }}</div>
+      <div class="fw-bold" *ngIf="target">vs target: {{ target }}</div>
     </div>
   </div>
 </div>

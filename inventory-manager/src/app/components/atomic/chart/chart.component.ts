@@ -1,39 +1,34 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
-import { Chart, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend, BarController, LineController } from 'chart.js';
+import { Component,Input,ViewChild,ElementRef,AfterViewInit } from '@angular/core';
+import { Chart, registerables, ChartData, ChartOptions } from 'chart.js';
 
-Chart.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend,
-  BarController,
-  LineController
-);
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-chart',
   standalone: true,
-  imports: [BaseChartDirective],
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  template: `<div class="chart-wrapper">
+              <canvas #chartCanvas></canvas>
+            </div>`,
 })
-export class ChartComponent implements OnInit {
-  @Input() chartData: ChartData = { labels: [], datasets: [] };
-  @Input() chartType: 'line' | 'bar' | 'pie' | 'doughnut' = 'line';
-  @Input() chartOptions: ChartOptions = {};
+export class ChartComponent implements AfterViewInit {
+  @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
 
-  public chartLegend: boolean = true;
-  public chartPlugins = [];
+  @Input() chartData!: ChartData;
+  @Input() chartType: any = 'bar';
+  @Input() chartOptions?: ChartOptions;
 
-  constructor() {}
+  chartInstance!: Chart;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    requestAnimationFrame(() => {
+      if (!this.chartData) return;
 
+      this.chartInstance = new Chart(this.chartCanvas.nativeElement, {
+        type: this.chartType,
+        data: this.chartData,
+        options: this.chartOptions,
+      });
+    });
   }
+
 }

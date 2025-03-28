@@ -1,7 +1,7 @@
 <div class="breadcrumb">
   <div class="breadcrumb-item" *ngFor="let item of breadcrumbItems; let last = last">
     <ng-container *ngIf="item">
-      <a [routerLink]="item.label">
+      <a [routerLink]="item.path">
         <i class="bi" [ngClass]="item.icon"></i> {{ item.label }}
       </a>
     </ng-container>

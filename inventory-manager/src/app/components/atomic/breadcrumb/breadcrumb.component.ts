@@ -53,14 +53,16 @@ export class BreadcrumbComponent implements OnInit {
     const pathSegments = this.getRouteSegments(this.activatedRoute.root);
 
     if (this.isDashboard()) {
-      this.breadcrumbItems = [{ label: 'Dashboard', icon: 'bi-house-door' }];
+      this.breadcrumbItems = [{ label: 'Dashboard', icon: 'bi-house-door', path: '/' }];
     } else {
-      this.breadcrumbItems = [{ label: 'Home', icon: 'bi-house-door' }, ...pathSegments.map(segment => ({
-        label: segment,
-        icon: 'bi-folder'
-      }))];
+      this.breadcrumbItems = [
+        { label: 'Dashboard', icon: 'bi-house-door', path: '/' },
+        ...pathSegments.map(segment => ({
+          label: segment,
+          path: `/${segment.toLowerCase().replace(/\s+/g, '-')}`
+        }))
+      ];
     }
-
   }
 
   private getRouteSegments(route: ActivatedRoute): any[] {

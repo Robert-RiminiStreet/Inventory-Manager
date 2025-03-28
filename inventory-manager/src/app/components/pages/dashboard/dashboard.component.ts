@@ -1,76 +1,137 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { AlertComponent } from '../../atomic/alert/alert.component';
 import { PageTitleService } from '../../../services/page-title.service';
 import { KpiCardComponent } from '../../atomic/card/kpi/kpi-card.component';
 import { DataTableComponent } from '../../atomic/data-table/data-table.component';
 import { DataService } from '../../../services/data.service';
 import { AiOptimizePlanCardComponent } from '../../atomic/card/ai-optimize-plan/ai-optimize-plan-card.component';
+import { inventoryHealthData } from '../../../../../public/data/inventory-health.data';
 import { ChartComponent } from '../../atomic/chart/chart.component';
+import { getChartColors } from '../../../chart-config';
+import { ThemeService } from '../../../services/theme.service';
+import { getDemandForecastData } from '../../../../../public/data/demand-forecast.data';
+import { alertsData } from '../../../../../public/data/alerts.data';
+
 
 @Component({
   selector: 'app-dashboard',
-  imports: [AlertComponent, KpiCardComponent, DataTableComponent, AiOptimizePlanCardComponent, ChartComponent],
+  standalone: true,
+  imports: [
+    AlertComponent,
+    RouterModule,
+    KpiCardComponent,
+    DataTableComponent,
+    AiOptimizePlanCardComponent,
+    ChartComponent,
+    CommonModule
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
+
 export class DashboardComponent implements OnInit {
   stockData: any[] = [];
+  colors: any;
+  lineChartData: any;
+  barChartData: any;
+  alerts = alertsData;
 
-  lineChartData = {
-    labels: ['January', 'February', 'March', 'April', 'May'],
-    datasets: [
-      {
-        data: [65, 59, 80, 81, 56],
-        label: 'Sales',
-        borderColor: '#42A5F5',
-        fill: false
-      }
-    ]
-  };
+  demandForecastChartData = getDemandForecastData;
 
-  barChartData = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange'],
-        borderColor: '#ffffff',
-        borderWidth: 1
-      }
-    ]
-  };
-
-  lineChartOptions = {
+  demandForecastChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const
+      }
+    },
     scales: {
       x: {
-        title: { text: 'Months', display: true }
+        title: { display: true, text: 'Month' }
       },
       y: {
-        title: { text: 'Sales', display: true }
+        title: { display: true, text: 'Incidents' }
       }
     }
   };
 
   barChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+        align: 'center' as const
+      }
+    },
     scales: {
       x: {
-        title: { text: 'Colors', display: true }
+
       },
       y: {
-        title: { text: 'Value', display: true }
+        title: { text: 'Millions', display: true }
       }
     }
   };
 
-  constructor(private pageTitleService: PageTitleService, private dataService: DataService) {}
+  constructor(
+    private pageTitleService: PageTitleService,
+    private dataService: DataService,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     this.pageTitleService.setTitle('Dashboard');
-    this.pageTitleService.setSubtitle('Pending Transfers: <strong>10</strong>  Completed Transfers: <strong>35</strong>');
+    this.pageTitleService.setSubtitle(
+      'Pending Transfers: <strong>10</strong>  Completed Transfers: <strong>35</strong>'
+    );
+
     this.dataService.getStockData().subscribe((data) => {
       this.stockData = data;
     });
+
+    this.themeService.themeLoaded$.subscribe((loaded) => {
+      if (loaded) {
+        this.initializeCharts();
+      }
+    });
+  }
+
+  private initializeCharts(): void {
+    this.colors = getChartColors();
+    console.log('[ChartColors]', this.colors);
+
+    const [itDataset, hrDataset] = inventoryHealthData.datasets;
+
+    this.lineChartData = {
+      labels: ['January', 'February', 'March', 'April', 'May'],
+      datasets: [
+        {
+          data: [65, 59, 80, 81, 56],
+          label: 'Sales',
+          borderColor: this.colors.blue,
+          fill: false
+        }
+      ]
+    };
+
+    this.barChartData = {
+      labels: inventoryHealthData.labels,
+      datasets: [
+        {
+          ...itDataset,
+          backgroundColor: this.colors.red,
+          borderWidth: 1
+        },
+        {
+          ...hrDataset,
+          backgroundColor: this.colors.blue,
+          borderWidth: 1
+        }
+      ]
+    };
   }
 }

@@ -1,23 +1,15 @@
 <div class="row row-cols-1 row-cols-md-12">
   <app-alert
+    *ngFor="let alert of alerts"
     class="mb-2"
-    variant="danger"
-    title="Stockout Risk: SKU-123"
-    subtitle="3 days to stockout"
-    impact="Impact: $45,000 production line B at risk"
-    icon="bi-exclamation-triangle-fill"
+    [variant]="alert.variant"
+    [title]="alert.title"
+    [subtitle]="alert.subtitle"
+    [impact]="alert.impact"
+    [icon]="alert.icon"
     [dismissible]="true"
-    buttonText="Resolve">
-  </app-alert>
-
-  <app-alert
-    variant="warning"
-    title="Stockout Risk: SKU-123"
-    subtitle="3 days to stockout"
-    impact="Impact: $45,000 production line B at risk"
-    icon="bi-exclamation-triangle-fill"
-    [dismissible]="true"
-    buttonText="Resolve">
+    buttonText="Resolve"
+    [routerLink]="['/alert-details', alert.sku]">
   </app-alert>
 </div>
 
@@ -103,9 +95,9 @@
       <div class="card-body">
         <div class="card-title h4 mb-4">Ai Analysis</div>
           <div class="card-content">
-            <div class="row row-cols-1 row-cols-lg-12">
-              <div class="col-sm-6">
-                <div class="card">
+            <div class="row row-cols-1 row-cols-lg-12" *ngIf="lineChartData && barChartData">
+              <div class="col-12 col-lg-6">
+                <div class="card mb-2">
                   <div class="card-body">
                     <div class="card-title h5 mb-4">Inventory Health</div>
                     <div class="card-content">
@@ -114,12 +106,12 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-12 col-lg-6">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title h5 mb-4">Demand Forecast</div>
                     <div class="card-content">
-                      <app-chart [chartData]="lineChartData" [chartType]="'line'" [chartOptions]="lineChartOptions"></app-chart>
+                      <app-chart [chartData]="this.demandForecastChartData()" [chartType]="'line'" [chartOptions]="demandForecastChartOptions"></app-chart>
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,110 @@
+<div class="row row-cols-1 row-cols-md-12 g-2">
+  <div class="col-12">
+    <div class="card p-3">
+      <div class="row mb-0">
+        <div class="col-lg-9 col-md-8">
+          <div class="d-flex align-items-center mb-4">
+            <div
+              class="risk-ball"
+              [ngStyle]="{ backgroundColor: getRiskColor(skuData?.vendorRiskScore) }">
+            </div>
+            <h5 class="mb-0 fw-bold">{{ skuData?.title }}</h5>
+          </div>
+          <p><strong>Issue Details:</strong> {{ skuData?.issueDetails }}</p>
+          <p><strong>Risk Details:</strong> {{ skuData?.riskDetails }}</p>
+          <p><strong>Compliance Details:</strong> {{ skuData?.complianceDetails }}</p>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="bg-light rounded p-3 h-100">
+            <p class="mb-2"><strong>Last audit date:</strong><br>{{ skuData?.lastAuditDate }}</p>
+            <p class="mb-2">
+              <strong>Vendor risk score:</strong><br>
+              <span
+                class="fw-bold"
+                [ngStyle]="{ color: getRiskColor(skuData?.vendorRiskScore) }">
+                {{ skuData?.vendorRiskScore }}
+              </span>
+            </p>
+            <p class="mb-0"><strong>Compliance status:</strong><br>{{ skuData?.complianceStatus }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 g-2">
+  <div *ngFor="let kpi of skuData?.kpis" class="col">
+    <app-kpi-card
+      class="card"
+      [title]="kpi.title"
+      [value]="kpi.value"
+      [change]="kpi.change"
+      [variant]="kpi.variant">
+    </app-kpi-card>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-1">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title h4 mb-4">Ai Recommendations</div>
+        <div class="card-content">
+          <div *ngFor="let recommendation of recommendations" class="col mb-2">
+            <app-ai-recommendation-card [recommendations]="[recommendation]"></app-ai-recommendation-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-12">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title h4 mb-4">AI Analysis</div>
+        <div class="card-content">
+          <div class="row row-cols-1 row-cols-lg-12">
+            <!-- Revenue Impact Chart -->
+            <div class="col-12 col-lg-6">
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="card-title h5 mb-4">Revenue Impact by SKU</div>
+                  <div class="card-content">
+                    <app-chart
+                      [chartData]="revenueImpactChartData"
+                      [chartType]="'bar'"
+                      [chartOptions]="revenueImpactChartOptions">
+                    </app-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cost Optimization Chart -->
+            <div class="col-12 col-lg-6">
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="card-title h5 mb-4">Cost Optimization Opportunities</div>
+                  <div class="card-content">
+                    <app-chart
+                      [chartData]="costOptimizationChartData"
+                      [chartType]="'bar'"
+                      [chartOptions]="costOptimizationChartOptions">
+                    </app-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

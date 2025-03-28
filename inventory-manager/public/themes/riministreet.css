@@ -114,4 +114,11 @@
   --button-info: var(--brand-colors-info);
   --button-tertiary: var(--brand-colors-tertiary);
   --button-disabled: var(--brand-colors-gray-300);
+
+  /* Charts */
+  --Chart-Blue: #2C8ED4;
+  --Chart-Green: #27A376;
+  --Chart-Grey: #C9C9C9;
+  --Chart-Red: #B61C2D;
+  --Chart-Yellow: #FFC107;
 }

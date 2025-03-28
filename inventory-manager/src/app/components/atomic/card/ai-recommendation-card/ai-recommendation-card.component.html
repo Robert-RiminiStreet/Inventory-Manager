@@ -1,0 +1,22 @@
+<div *ngFor="let recommendation of recommendations" class="card p-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-column">
+      <div class="d-flex">
+        <div class="risk-ball" [ngStyle]="{ backgroundColor: getColorForBall(recommendation.variant) }"></div>
+        <h5 class="text-lg font-bold">{{ recommendation.title }}</h5>
+      </div>
+      <div class="text-sm">
+        <strong>Details:</strong> {{ recommendation.skuStatus }} <strong>{{ recommendation.warehouse }}</strong>
+      </div>
+      <div class="text-sm">
+        <strong>Impact:</strong> {{ recommendation.impact }}
+      </div>
+    </div>
+    <app-button
+      [variant]="'primary'"
+      [size]="'sm'"
+      [text]="'Select'"
+      (click)="selectRecommendation(recommendation)">
+    </app-button>
+  </div>
+</div>
