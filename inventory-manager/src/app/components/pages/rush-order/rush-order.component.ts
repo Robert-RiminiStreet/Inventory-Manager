@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { PageTitleService } from '../../../services/page-title.service';
 import { SkuDataService } from '../../../services/sku-data.service';
-import { KpiCardComponent } from '../../atomic/card/kpi/kpi-card.component';
-import { AiRecommendationCardComponent } from '../../atomic/card/ai-recommendation-card/ai-recommendation-card.component';
-import { ChartComponent } from '../../atomic/chart/chart.component';
-import { getRevenueImpactData, getCostOptimizationData } from '../../../../../public/data/revenue-impact-by-sku.data';
 import { revenueImpactChartOptions, costOptimizationChartOptions } from '../../../chart-config';
+import { getRevenueImpactData, getCostOptimizationData } from '../../../../../public/data/revenue-impact-by-sku.data';
+import { CommonModule } from '@angular/common';
+import { KpiCardComponent } from '../../atomic/card/kpi/kpi-card.component';
+import { ChartComponent } from '../../atomic/chart/chart.component';
+import { ButtonComponent } from '../../atomic/button/button.component';
+
 
 @Component({
-  selector: 'app-alert-details',
+  selector: 'app-rush-order',
   standalone: true,
-  imports: [CommonModule, KpiCardComponent, AiRecommendationCardComponent, ChartComponent],
-  templateUrl: './alert-details.component.html',
-  styleUrls: ['./alert-details.component.scss']
+  imports: [CommonModule, KpiCardComponent, ChartComponent, ButtonComponent],
+  templateUrl: './rush-order.component.html',
+  styleUrls: ['./rush-order.component.scss']
 })
-export class AlertDetailsComponent implements OnInit {
+export class RushOrderComponent implements OnInit {
   skuData: any;
   recommendations = [
     {
-      id: 'SKU-123',
       title: 'Rush Order',
       skuStatus: 'Rush order for SKU-123 to be sent out from',
       impact: '$45,000 Production Line B at risk',
@@ -28,12 +28,29 @@ export class AlertDetailsComponent implements OnInit {
       variant: 'danger'
     },
     {
-      id: 'SKU-456',
       title: 'Inventory Transfer',
       skuStatus: 'Initiate inventory transfer for SKU-123 from',
       impact: '$32,000 potential sales impact',
       warehouse: 'Warehouse B',
       variant: 'warning'
+    }
+  ];
+
+  actions = [
+    {
+      title: 'Expedite Re-order with Current Vendor',
+      details: 'Request overnight shipping and partial shipments',
+      impact: '50% stocker risk reduction'
+    },
+    {
+      title: 'Optimize Warehouse and Distribution Allocation',
+      details: 'Shift low demand stock to high demand areas',
+      impact: '30% improved availability'
+    },
+    {
+      title: 'Enable Pre-order and Customer Notifications',
+      details: 'Enable pre-orders and realtime stock alerts',
+      impact: '20% Sales retention'
     }
   ];
 
@@ -58,14 +75,18 @@ export class AlertDetailsComponent implements OnInit {
           this.skuData = data;
           this.pageTitleService.setTitle(data?.title);
           this.pageTitleService.setSubtitle('Last update 5 minutes ago');
-        } else {
-          console.error("SKU data not found");
         }
       });
     }
 
     this.revenueImpactChartData = getRevenueImpactData();
     this.costOptimizationChartData = getCostOptimizationData();
+
+    this.pageTitleService.setBreadcrumbs([
+      { label: 'Dashboard', link: '/dashboard' },
+      { label: 'Alert Details', link: '/alert-details' },
+      { label: 'Rush Order' }
+    ]);
   }
 
   getRiskColorClass(score: number): string {
@@ -86,5 +107,9 @@ export class AlertDetailsComponent implements OnInit {
     } else {
       return 'var(--font-color-body-default-light)'; // Light text for low risk
     }
+  }
+
+  onApprove(): void {
+    console.log('Approval Clicked!');
   }
 }

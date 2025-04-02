@@ -15,9 +15,6 @@ button {
   border: 2px solid transparent;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.1s ease-in-out;
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .primary {
@@ -26,6 +23,8 @@ button {
   border-color: var(--button-primary);
   &:hover {
     background: color-mix(in srgb, var(--button-primary) 15%, black);
+    color: var(--font-color-body-default-light);
+    cursor: pointer;
   }
 }
 
@@ -36,6 +35,7 @@ button {
   &:hover {
     background: var(--button-primary);
     color: var(--font-color-body-default-light);
+    cursor: pointer;
   }
 }
 
@@ -45,6 +45,7 @@ button {
   border-color: var(--button-success);
   &:hover {
     background: color-mix(in srgb, var(--button-success) 85%, black);
+    cursor: pointer;
   }
 }
 

@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { PageTitleService } from './services/page-title.service';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './components/compound/navigation/navigation.component';
 import { HeaderComponent } from './components/compound/header/header.component';
 import { BreadcrumbComponent } from './components/atomic/breadcrumb/breadcrumb.component';
 import { ThemeService, ThemeType } from './services/theme.service';
+import { PageTitleService } from './services/page-title.service';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +13,19 @@ import { ThemeService, ThemeType } from './services/theme.service';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
-    RouterOutlet,
     RouterModule,
     CommonModule,
     NavigationComponent,
     HeaderComponent,
-    BreadcrumbComponent]
+    BreadcrumbComponent,
+    RouterOutlet
+  ]
 })
 export class AppComponent implements OnInit {
   pageTitle: string = '';
   subtitle: string = '';
   selectedTheme: ThemeType = 'riministreet';
+  breadcrumbItems: any[] = [];
 
   constructor(
     private themeService: ThemeService,
@@ -32,26 +34,32 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.pageTitleService.title$.subscribe(title => {
+    this.pageTitleService.title$.subscribe((title: string) => {
       this.pageTitle = title;
       this.cdRef.detectChanges();
     });
 
-    this.pageTitleService.subtitle$.subscribe(subtitle => {
+    this.pageTitleService.subtitle$.subscribe((subtitle: string) => {
       this.subtitle = subtitle;
       this.cdRef.detectChanges();
+    });
+
+    this.pageTitleService.breadcrumb$.subscribe(breadcrumbs => {
+      this.breadcrumbItems = breadcrumbs;
     });
   }
 
   switchTheme(event: Event) {
     const target = event.target as HTMLSelectElement;
-    if (target && (target.value === 'riministreet' || target.value === 'servicenow')) {
-      this.selectedTheme = target.value as ThemeType;
+    const theme = target?.value;
+
+    if (theme && (theme === 'riministreet' || theme === 'servicenow')) {
+      this.selectedTheme = theme as ThemeType;
       this.themeService.setTheme(this.selectedTheme);
     }
   }
 
-  updatePageTitle(title: string) {
+  updatePageTitle(title: any) {
     this.pageTitle = title;
   }
 }

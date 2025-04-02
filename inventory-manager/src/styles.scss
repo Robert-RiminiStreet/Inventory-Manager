@@ -8,6 +8,12 @@ body, html {
   height: 100vh;
 }
 
+.i, a, .btn {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
+
 h1, .h1 {
   font-size: var(--font-size-H1);
 }
@@ -52,4 +58,3 @@ h6, .h6 {
 .card {
   border-radius: var(--corner-radius-corner-radius-l);
 }
-

@@ -1,20 +1,23 @@
 <div class="row row-cols-1 row-cols-md-12 g-2">
-  <div class="col-12">
+  <div class="col-12" *ngIf="skuData">
     <div class="card p-3">
       <div class="row mb-0">
         <div class="col-lg-9 col-md-8">
           <div class="d-flex align-items-center mb-4">
-            <div class="risk-ball" [ngStyle]="{ backgroundColor: getRiskColorClass(skuData?.vendorRiskScore) }"></div>
-            <h5 class="mb-0 fw-bold">{{ skuData?.title || 'Loading...' }}</h5>
+            <div
+              class="risk-ball"
+              [ngStyle]="{ backgroundColor: getRiskColorClass(skuData?.vendorRiskScore) }">
+            </div>
+            <h5 class="mb-0 fw-bold">{{ skuData?.title }}</h5>
           </div>
-          <p><strong>Issue Details:</strong> {{ skuData?.issueDetails || 'Loading...' }}</p>
-          <p><strong>Risk Details:</strong> {{ skuData?.riskDetails || 'Loading...' }}</p>
-          <p><strong>Compliance Details:</strong> {{ skuData?.complianceDetails || 'Loading...' }}</p>
+          <p><strong>Issue Details:</strong> {{ skuData?.issueDetails }}</p>
+          <p><strong>Risk Details:</strong> {{ skuData?.riskDetails }}</p>
+          <p><strong>Compliance Details:</strong> {{ skuData?.complianceDetails }}</p>
         </div>
 
         <div class="col-lg-3 col-md-4">
           <div class="bg-light rounded p-3 h-100">
-            <p class="mb-2"><strong>Last audit date:</strong><br>{{ skuData?.lastAuditDate || 'Loading...' }}</p>
+            <p class="mb-2"><strong>Last audit date:</strong><br>{{ skuData?.lastAuditDate }}</p>
             <p class="mb-2">
               <strong>Vendor risk score:</strong><br>
               <span
@@ -26,7 +29,7 @@
                 {{ skuData?.vendorRiskScore }}
               </span>
             </p>
-            <p class="mb-0"><strong>Compliance status:</strong><br>{{ skuData?.complianceStatus || 'Loading...' }}</p>
+            <p class="mb-0"><strong>Compliance status:</strong><br>{{ skuData?.complianceStatus }}</p>
           </div>
         </div>
       </div>
@@ -34,7 +37,7 @@
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-4 g-2">
+<div class="row row-cols-1 row-cols-md-4 g-2" *ngIf="skuData">
   <div *ngFor="let kpi of skuData?.kpis" class="col">
     <app-kpi-card
       class="card"
@@ -46,14 +49,31 @@
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-1">
+<div class="row row-cols-1 row-cols-md-1" *ngIf="skuData">
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <div class="card-title h4 mb-4">Ai Recommendations</div>
+        <div class="card-title h4 mb-4">Ai Recommended Rush Order</div>
         <div class="card-content">
-          <div *ngFor="let recommendation of recommendations" class="col mb-2">
-            <app-ai-recommendation-card [recommendations]="[recommendation]"></app-ai-recommendation-card>
+          <div class="row g-2">
+            <div class="col-md-4" *ngFor="let action of actions">
+              <div class="card h-100 text-bg-light">
+                <div class="card-body">
+                  <h5 class="card-title">Action</h5>
+                  <p class="card-text">{{ action.title }}</p>
+                  <p class="card-text">Details: {{ action.details }}</p>
+                  <p class="card-text" style="color: green;">Impact: {{ action.impact }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <app-button
+              class="w-100"
+              [variant]="'primary'"
+              [text]="'Approve'"
+              (click)="onApprove()">
+            </app-button>
           </div>
         </div>
       </div>
@@ -103,6 +123,3 @@
     </div>
   </div>
 </div>
-
-
-

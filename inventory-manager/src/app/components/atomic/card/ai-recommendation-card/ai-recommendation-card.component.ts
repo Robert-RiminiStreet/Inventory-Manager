@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../button/button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ai-recommendation-card',
@@ -10,6 +11,8 @@ import { ButtonComponent } from '../../button/button.component';
 })
 export class AiRecommendationCardComponent {
   @Input() recommendations: any[] = [];
+
+  constructor(private router: Router) {}
 
   getColorForBall(variant: string) {
     switch (variant) {
@@ -25,6 +28,7 @@ export class AiRecommendationCardComponent {
   }
 
   selectRecommendation(recommendation: any) {
-    console.log('Recommendation selected:', recommendation);
+    const skuId = recommendation.id;
+    this.router.navigate([`/rush-order/${skuId}`]);
   }
 }
